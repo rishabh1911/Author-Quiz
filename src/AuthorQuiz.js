@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
@@ -22,6 +23,19 @@ function Book({title, onClick}) {
 }
 
 function Turn({author, books, answered, onAnswerSelected}) {
+
+  // Adding Prop Validations
+  Turn.prototypes = {
+    author: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      imageUrl: PropTypes.string.isRequired,
+      imageSource: PropTypes.string.isRequired,
+      books: PropTypes.arrayOf(PropTypes.string).isRequired
+    }),
+    books: PropTypes.arrayOf(PropTypes.string).isRequired,
+    onAnswerSelected: PropTypes.func.isRequired,
+    answered: PropTypes.string.isRequired
+  };
 
   function mapBackgroundColorToAnswer(answered) {
     const mapping = {
