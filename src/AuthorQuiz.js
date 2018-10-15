@@ -32,6 +32,7 @@ function Turn({author, books}) {
       </div>
     </div>
   );
+  // key prop with unique value needed in {books.map( (title) => <Book title={title} key={title}/> )}
 }
 
 function Continue() {
