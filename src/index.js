@@ -61,11 +61,19 @@ function getTurnData(authors) {
 
 const state = {
     turnData:  getTurnData(authors),
-    highlight: ''
+    answered: 'notAnswered'
 };
 
-ReactDOM.render(<AuthorQuiz  {...state}/>, document.getElementById('root'));
+function onAnswerSelected(answer) {
+  const isCorrect = state.turnData.author.books.some( (book) => book === answer );
+  state.answered = isCorrect ? 'right' : 'wrong';
+  render();
+}
 
+function render() {
+  ReactDOM.render(<AuthorQuiz  {...state}  onAnswerSelected={onAnswerSelected}/>, document.getElementById('root'));
+}
+render();
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA
