@@ -59,9 +59,15 @@ function Turn({author, books, answered, onAnswerSelected}) {
   // key prop with unique value needed in {books.map( (title) => <Book title={title} key={title}/> )}
 }
 
-function Continue() {
+function Continue({ isVisible, onContinue }) {
   return (
-    <div className="continue"></div>
+    <div className="continue">
+    {
+      isVisible ? <div>
+        <button className="btn btn-primary btn-lg float-right" onClick={onContinue}>Continue</button>
+      </div> : null 
+    }
+    </div>
   );
 }
 
@@ -77,12 +83,12 @@ function Footer() {
   );
 }
 
-function AuthorQuiz({ turnData, answered , onAnswerSelected}) {
+function AuthorQuiz({ turnData, answered , onAnswerSelected, onContinueClicked}) {
   return (
     <div className="container-fluid">
       <Hero />
       <Turn {...turnData } answered = {answered} onAnswerSelected ={onAnswerSelected} />
-      <Continue />
+      <Continue isVisible={answered === 'right'} onContinue={onContinueClicked}/>
       <p><Link to="/add"> Add an Author</Link></p>
       <Footer />
     </div>
