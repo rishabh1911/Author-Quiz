@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, withRouter } from 'react-router-dom';
 import './index.css';
 import AuthorQuiz from './AuthorQuiz';
 import AddAuthorForm from './AddAuthorForm';
@@ -76,9 +76,12 @@ function App() {
   return <AuthorQuiz  {...state}  onAnswerSelected={onAnswerSelected}/>;
 }
 
-function AuthorWrapper() {
-  return <AddAuthorForm onAddAuthor={console.log} />;
-}
+const AuthorWrapper= withRouter(({history}) =>
+   <AddAuthorForm onAddAuthor={ (author) => {
+     authors.push(author);
+     history.push("/")
+    }} />
+  );
 
 function render() {
   ReactDOM.render(
