@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
@@ -82,6 +83,7 @@ function AuthorQuiz({ turnData, answered , onAnswerSelected}) {
       <Hero />
       <Turn {...turnData } answered = {answered} onAnswerSelected ={onAnswerSelected} />
       <Continue />
+      <p><Link to="/add"> Add an Author</Link></p>
       <Footer />
     </div>
   );
